@@ -1,6 +1,9 @@
 # Data Preprocessing Tools
 
 # Taking care of missing data
+# Encoding categorical data - ColumnTransformer()
+# Encoding the Dependent Variable - LabelEncoder()
+
 
 
 # Importing the libraries
@@ -54,6 +57,40 @@ X[:, 1:3] = imputer.transform(X[:, 1:3])
 # #  ['Germany' 50.0 83000.0]
 # #  ['France' 37.0 67000.0]
 # # ]
+
+
+
+# *********************************************************************************************************
+# Encoding categorical data - into binary
+# Encoding the Independent Variable
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+# country column transform to binary
+# ColumnTransformer(['encoder', OneHotEncoder(), [column index]])
+ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+# fitting transforming, force in np array
+X = np.array(ct.fit_transform(X))
+
+# print(X)
+# # [[1.0 0.0 0.0 44.0 72000.0]
+# #  [0.0 0.0 1.0 27.0 48000.0]
+# #  [0.0 1.0 0.0 30.0 54000.0]
+# #  [0.0 0.0 1.0 38.0 61000.0]
+# #  [0.0 1.0 0.0 40.0 63777.77777777778]
+# #  [1.0 0.0 0.0 35.0 58000.0]
+# #  [0.0 0.0 1.0 38.77777777777778 52000.0]
+# #  [1.0 0.0 0.0 48.0 79000.0]
+# #  [0.0 1.0 0.0 50.0 83000.0]
+# #  [1.0 0.0 0.0 37.0 67000.0]]
+
+
+# *********************************************************************************************************
+# Encoding the Dependent Variable
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+y = le.fit_transform(y)
+# print(y)            # [0 1 0 0 1 1 0 1 0 1]
+
 
 
 
