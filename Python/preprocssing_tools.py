@@ -1,9 +1,12 @@
 # Data Preprocessing Tools
 
-# Taking care of missing data
-# Encoding categorical data - ColumnTransformer()
-# Encoding the Dependent Variable - LabelEncoder()
 
+# 1. Taking care of missing data - SimpleImputer()
+
+# 2.1 Encoding categorical data - ColumnTransformer()
+# 2.2 Encoding the Dependent Variable - LabelEncoder()
+
+# 3. Splitting the dataset into the Training set and Test set - train_test_split()
 
 
 # Importing the libraries
@@ -93,7 +96,43 @@ y = le.fit_transform(y)
 
 
 
+# *********************************************************************************************************
+# feature scaling AFTER split into training set + test set
+# *********************************************************************************************************
 
+
+# *********************************************************************************************************
+# Splitting the dataset into the Training set and Test set
+from sklearn.model_selection import train_test_split
+
+# train_test_split(arrays)
+# training_set 80%, test_set 20%
+
+# random_state = 1; equal result of train/ test set
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 1)
+# print(X_train)
+# # [[0.0 0.0 1.0 38.77777777777778 52000.0]
+# #  [0.0 1.0 0.0 40.0 63777.77777777778]
+# #  [1.0 0.0 0.0 44.0 72000.0]
+# #  [0.0 0.0 1.0 38.0 61000.0]
+# #  [0.0 0.0 1.0 27.0 48000.0]
+# #  [1.0 0.0 0.0 48.0 79000.0]
+# #  [0.0 1.0 0.0 50.0 83000.0]
+# #  [1.0 0.0 0.0 35.0 58000.0]
+# # ]
+
+# # random pick?! 
+# print(X_test)
+# # [[0.0 1.0 0.0 30.0 54000.0]
+# #  [1.0 0.0 0.0 37.0 67000.0]
+# # ]
+
+# # correspond to X_train
+# print(y_train)          # [0 1 0 0 1 1 0 1]
+
+# # correspond to X_test
+# print(y_test)           # [0 1]
 
 
 
